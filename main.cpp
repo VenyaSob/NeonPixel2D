@@ -1,5 +1,6 @@
 #include "sources/game/game.h"
 
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
 {	
 	switch(Message) 

@@ -32,6 +32,9 @@ namespace player
 		public:
 			
 			CPlayer();
+		
+		public:
+			
 			void perform(act_t act);		
 	};
 }

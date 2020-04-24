@@ -1,5 +1,5 @@
-#include "../tile/tile.h"
-using namespace tile;
+#include "../sprite/sprite.h"
+using namespace sprite;
 
 #include "../animation/animation.h"
 using namespace animation;
@@ -15,6 +15,10 @@ namespace
 
 namespace 
 {	
+	CImageBMP IMG_player;
+	CImageBMP  IMG_floor;
+	CImageBMP   IMG_wall;
+
 	CAnimation anim(CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/coin.bmp"), 8, MAKE_TIME(0.1));
 }
 
@@ -23,6 +27,9 @@ namespace map
 {		
 	void Map(HDC hdc, action_t action)
 	{		
+		
+		
+		
 		////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////
@@ -45,10 +52,17 @@ namespace map
 			}
 		}
 		
+		if(a == 1)
+		{
+			IMG_player.init(hdc, P_PLAYER);	
+			IMG_wall.init(hdc, P_WALL);
+			IMG_floor.init(hdc, P_FLOOR);
+		}
+		
 		////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////
-			
+			 
 
 	
 		for(counter_t nLine = 0; nLine < M_SIZE_LINE; nLine++)	
@@ -69,13 +83,12 @@ namespace map
 										
 					if(szMap[nLine][nCol] == BLOCK)
 					{
-						SetImageBMP(hdc, P_FLOOR, MAKE_COORD_PAIR(0, 0), MAKE_POSITION(nLine, nCol));
+						IMG_wall.draw(hdc, MAKE_COORD_PAIR(0, 0), MAKE_POSITION(nLine, nCol));
 					}
 					
 					if(szMap[nLine][nCol] == EMPT)
 					{
 						DrawRecangle(hdc, MAKE_POSITION(nLine, nCol), CreatePen(PS_SOLID, 1, 0), CreateSolidBrush(0));
-						//SetImageBMP(hdc, P_FLOOR, MAKE_POSITION(nLine, nCol));
 					}
 					
 					if(action != recover)

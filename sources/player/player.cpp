@@ -59,7 +59,7 @@ namespace player
 
 
 namespace player
-{	
+{
 	CPlayer::CPlayer()
 	{
 		for(counter_t nLine = 0; nLine < M_SIZE_LINE; nLine++)	
@@ -72,8 +72,12 @@ namespace player
 				}
 			}
 		}	
-	}	
-	
+	}		
+}
+
+
+namespace player
+{	
 	
 	void CPlayer::perform(act_t act)	
 	{

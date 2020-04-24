@@ -52,7 +52,7 @@ namespace settings
 		return (coord_pair_t){x, y};	
 	}
 	
-	
+		
 	//TEXT
 	cstring_t CSTRING(const char* pString)
 	{

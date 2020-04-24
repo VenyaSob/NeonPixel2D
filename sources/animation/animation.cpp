@@ -1,13 +1,16 @@
 #include "animation.h"
 
-#include "../tile/tile.h"
-using namespace tile;
-
 
 namespace animation
-{	
+{	 
 	bool CAnimation::update(HDC hdc, position_t position)
 	{	
+		static counter_t cnt_init;
+		if(++cnt_init == 1)
+		{
+			image.init(hdc, path);	
+		}
+		
 		if(bRun == true)
 		{
 			if(global::time >= (this->time + FreqUpdate))
@@ -15,8 +18,8 @@ namespace animation
 				if(frame > n_frame)
 					frame = 0;
 				
-				SetImageBMP(hdc, image, MAKE_COORD_PAIR(frame * B_SIZE, 0), position);
-			
+				image.draw(hdc, MAKE_COORD_PAIR(frame * B_SIZE, 0), position);
+		
 				frame++;	
 		
 				this->time = global::time;
@@ -32,7 +35,7 @@ namespace animation
 	{ 	
 		if(bRun == true)
 		{	
-			SetImageBMP(hdc, image, MAKE_COORD_PAIR(frame * B_SIZE, 0), position);	
+			image.draw(hdc, MAKE_COORD_PAIR(frame * B_SIZE, 0), position);
 		}
 		
 		return bRun;	

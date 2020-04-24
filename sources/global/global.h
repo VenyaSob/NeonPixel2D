@@ -11,11 +11,16 @@ using namespace settings;
 #include "../player/player.h"
 using namespace player;
 
+namespace stdio
+{
+	#include <stdio.h>
+}
 
 namespace global 
 {
 	extern HWND hWnd;
-
+	
+	extern time_t 		 time;
 	extern CPlayer 	   Player;
 	extern char szMap[20][30]; 
 }

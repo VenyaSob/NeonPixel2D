@@ -5,64 +5,77 @@ using namespace tile;
 
 
 namespace animation
-{		
-	bool CAnimation::update(HDC hdc, time_t timer, position_t position)
-	{
+{	
+	bool CAnimation::update(HDC hdc, position_t position)
+	{	
 		if(bRun == true)
 		{
-			if(time >= (this->time + FreqUpdate))
-			{
+			if(global::time >= (this->time + FreqUpdate))
+			{			
 				if(frame > n_frame)
 					frame = 0;
-					
-				SetImageBMP(hdc, pImage[frame], position);
 				
-				this->time = time;	
-			}	
+				SetImageBMP(hdc, image, MAKE_COORD_PAIR(frame * B_SIZE, 0), position);
+			
+				frame++;	
+		
+				this->time = global::time;
+				return true;
+			}
 		}	
 		
-		return bRun;
+		return false;
+	}
+	
+	
+	bool CAnimation::last_frame(HDC hdc, position_t position)
+	{ 	
+		if(bRun == true)
+		{	
+			SetImageBMP(hdc, image, MAKE_COORD_PAIR(frame * B_SIZE, 0), position);	
+		}
+		
+		return bRun;	
+	}
+	
+	
+	void CAnimation::set_freq_update(time_t FreqUpdate)
+	{
+		this->FreqUpdate = FreqUpdate;	
+	}
+	
+	
+	const time_t CAnimation::get_freq_update()
+	{
+		return FreqUpdate;	
+	}
+	
+
+	bool CAnimation::run()
+	{
+		return bRun;	
 	}
 	
 	
 	bool CAnimation::start()
 	{
 		if(bRun == false)
+		{	
 			bRun = true;
-		
-		return bRun;	
+			return true;
+		}
+		else return false;	
 	}
 	
 	
 	bool CAnimation::stop()
 	{
 		if(bRun == true)
+		{	
 			bRun = false;
-		
-		return !bRun;			
+			return true;
+		}	
+		else return false;
 	}
 }
 
-
-namespace animation
-{		
-	void neon_gradient(position_t position)
-	{
-		static double nTic = 70;
-		
-		if((nTic += 0.2) == 255) 
-			nTic = 70;	 
-		
-		HDC hdc = GetDC(hWnd);	
-		
-		for(counter_t nX = 0; nX < B_SIZE; nX++)	
-		{
-			for(counter_t nY = 0; nY < B_SIZE; nY++)
-			{
-				SetPixel(hdc, X(position) + nX, Y(position) + nY, RGB(nX * nTic, sin(cos(nY * nTic)), nTic));
-			}	
-		}
-		
-		ReleaseDC(hWnd, hdc);
-	}
-}

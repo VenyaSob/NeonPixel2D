@@ -11,7 +11,7 @@ namespace settings
 	const int FREQ_UPDATE_TIMER = 1;
 	
 	//PLAYER
-	const int P_SIZE = 32;
+	const int P_SIZE = 32; 
 	const int P_STEP = P_SIZE;
 	
 	//BLOCK
@@ -26,36 +26,36 @@ namespace settings
 	const int EMPT   = (char)32;
 	
 	//SCREEN SIZE
-	const int SCREEN_WIDTH = B_SIZE * 30 - (P_SIZE / 1.5);
+	const int SCREEN_WIDTH  = B_SIZE * 30 - (P_SIZE / 1.5);
 	const int SCREEN_HEIGHT = B_SIZE * 20;
 	
 	// PATHS
-	const string_t P_PLAYER = CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/player.bmp");
-	const string_t P_WALL   = CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/wall.bmp");
-	const string_t P_FLOOR  = CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/floor.bmp");
+	cstring_t P_PLAYER = CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/player.bmp");
+	cstring_t P_WALL   = CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/wall.bmp");
+	cstring_t P_FLOOR  = CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/floor.bmp");
 }
 
 
-namespace settings
+namespace settings 	
 {
 	// COORDINATES 
-	const int X(position_t position){return position.col * B_SIZE;}
-	const int Y(position_t position){return position.line * B_SIZE;}
+	coord_t X(position_t position){return position.col * B_SIZE;}
+	coord_t Y(position_t position){return position.line * B_SIZE;}
 	
-	const position_t MAKE_POSITION(const int x, const int y) 
+	position_t MAKE_POSITION(short line, short col) 
 	{
-		return (const position_t){x, y};	
+		return (position_t){line, col};	
+	}
+	
+	coord_pair_t MAKE_COORD_PAIR(coord_t x, coord_t y) 
+	{
+		return (coord_pair_t){x, y};	
 	}
 	
 	
 	//TEXT
-	const string_t CSTRING(const char* pString)
+	cstring_t CSTRING(const char* pString)
 	{
-		return(const string_t)pString;	
-	}
-	
-	const string_t* CPSTRING(const char** pString)
-	{
-		return(const string_t*)pString;	
+		return(cstring_t)pString;	
 	}
 }

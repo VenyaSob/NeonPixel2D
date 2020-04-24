@@ -7,11 +7,11 @@ using namespace global;
 namespace player
 {
 	void CPlayer::movement(act_t act)
-	{		
+	{	
 		switch(act)
 		{
 			case forward: 
-			{
+			{	
 				if(szMap[position.line - 1][position.col] != BLOCK)
 				{	
 					szMap[position.line][position.col] = EMPT;
@@ -44,7 +44,7 @@ namespace player
 			}
 			
 			case right: 
-			{
+			{			
 				if(szMap[position.line][position.col + 1] != BLOCK)
 				{	
 					szMap[position.line][position.col] = EMPT;

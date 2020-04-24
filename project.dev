@@ -100,7 +100,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit14]
+[Unit16]
 FileName=sources\data type\data_type.h
 CompileCpp=1
 Folder=project
@@ -110,7 +110,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit15]
+[Unit14]
 FileName=sources\settings\settings.h
 CompileCpp=1
 Folder=project
@@ -160,7 +160,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit7]
+[Unit9]
 FileName=sources\tile\tile.cpp
 CompileCpp=1
 Folder=project
@@ -170,7 +170,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit6]
+[Unit8]
 FileName=sources\tile\tile.h
 CompileCpp=1
 Folder=project
@@ -180,7 +180,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit9]
+[Unit7]
 FileName=sources\animation\animation.cpp
 CompileCpp=1
 Folder=project
@@ -190,7 +190,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit8]
+[Unit6]
 FileName=sources\animation\animation.h
 CompileCpp=1
 Folder=project
@@ -200,7 +200,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit16]
+[Unit15]
 FileName=sources\settings\settings.cpp
 CompileCpp=1
 Folder=project

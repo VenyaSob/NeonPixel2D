@@ -15,59 +15,68 @@ namespace
 
 namespace 
 {	
-	const char *images[] = {"D:/Folders/Programming/C++/NeonPixel2D/resources/images/wall.bmp", 
-						    "D:/Folders/Programming/C++/NeonPixel2D/resources/images/player.bmp"};
-	
-	CAnimation anim_player(CPSTRING(images), 2, 1);
-	
-	time_t time;	
+	CAnimation anim(CSTRING("D:/Folders/Programming/C++/NeonPixel2D/resources/images/coin.bmp"), 8, MAKE_TIME(0.1));
 }
 
 
 namespace map
 {		
 	void Map(HDC hdc, action_t action)
-	{
-		time += (FREQ_UPDATE_TIMER / 1000);
-					
+	{		
+		////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////
+		
+		static time_t b = 0.1;
+		static int a = 0;
+		static bool B = false;
+		
+		if(++a % 5 == 0)
+		{	
+			if(anim.get_freq_update() <= 0.01)
+				B = true;
+				
+			if(!B) anim.set_freq_update(b -= 0.001);	
+			else  
+			{
+				anim.set_freq_update(b += 0.001);		
+				if(anim.get_freq_update() >= 0.1)
+					B = false;
+			}
+		}
+		
+		////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////
+			
+
+	
 		for(counter_t nLine = 0; nLine < M_SIZE_LINE; nLine++)	
 		{
 			for(counter_t nCol = 0; nCol < M_SIZE_COL; nCol++)
 			{	
 				if(szMap[nLine][nCol] == PLAYER)
 				{
-					anim_player.update(hdc, ::time, MAKE_POSITION(nLine, nCol));
-					//SetImageBMP(hdc, P_PLAYER, POS(nLine, nCol));
-					//neon_gradient(POS);
+					anim.update(hdc, MAKE_POSITION(nLine, nCol));
 				}
 				
 				if(szOldMap[nLine][nCol] != szMap[nLine][nCol] || action == recover)
 				{	
-					
+					if(szMap[nLine][nCol] == PLAYER)
+					{
+						anim.last_frame(hdc, MAKE_POSITION(nLine, nCol));
+					}
+										
 					if(szMap[nLine][nCol] == BLOCK)
 					{
-						SetImageBMP(hdc, P_WALL, MAKE_POSITION(nLine, nCol));
+						SetImageBMP(hdc, P_FLOOR, MAKE_COORD_PAIR(0, 0), MAKE_POSITION(nLine, nCol));
 					}
 					
 					if(szMap[nLine][nCol] == EMPT)
 					{
-						SetImageBMP(hdc, P_FLOOR, MAKE_POSITION(nLine, nCol));
+						DrawRecangle(hdc, MAKE_POSITION(nLine, nCol), CreatePen(PS_SOLID, 1, 0), CreateSolidBrush(0));
+						//SetImageBMP(hdc, P_FLOOR, MAKE_POSITION(nLine, nCol));
 					}
-					/*						
-					switch(szMap[nLine][nCol])
-					{											
-						case BLOCK: 
-						{	
-							SetImageBMP(hdc, P_WALL, position(nLine, nCol));	
-							break;
-						}
-						
-						case EMPT:
-						{
-							SetImageBMP(hdc, P_FLOOR, position(nLine, nCol));	
-							break;	
-						}
-					}*/	
 					
 					if(action != recover)
 					{

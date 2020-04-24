@@ -11,7 +11,7 @@ namespace player
 		back   ,  
 		left   ,  
 		right  ,
-		shoot
+		shot  
 	};
 }
 

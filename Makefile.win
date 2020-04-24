@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o sources/game/game.o sources/map/map.o sources/tile/tile.o sources/animation/animation.o sources/player/player.o sources/global/global.o sources/settings/settings.o $(RES)
-LINKOBJ  = main.o sources/game/game.o sources/map/map.o sources/tile/tile.o sources/animation/animation.o sources/player/player.o sources/global/global.o sources/settings/settings.o $(RES)
+OBJ      = main.o sources/game/game.o sources/map/map.o sources/animation/animation.o sources/tile/tile.o sources/player/player.o sources/global/global.o sources/settings/settings.o $(RES)
+LINKOBJ  = main.o sources/game/game.o sources/map/map.o sources/animation/animation.o sources/tile/tile.o sources/player/player.o sources/global/global.o sources/settings/settings.o $(RES)
 LIBS     = -L"C:/2020_Work/2_1_February/R____/Linar/Dev-Cpp/Base/MinGW32/lib" -static-libstdc++ -static-libgcc -mwindows libraries/libws2_32.a libraries/libgdiplus.a   -s 
 INCS     = -I"C:/2020_Work/2_1_February/R____/Linar/Dev-Cpp/Base/MinGW32/include" 
 CXXINCS  = -I"C:/2020_Work/2_1_February/R____/Linar/Dev-Cpp/Base/MinGW32/include" 
@@ -34,11 +34,11 @@ sources/game/game.o: sources/game/game.cpp
 sources/map/map.o: sources/map/map.cpp
 	$(CPP) -c sources/map/map.cpp -o sources/map/map.o $(CXXFLAGS)
 
-sources/tile/tile.o: sources/tile/tile.cpp
-	$(CPP) -c sources/tile/tile.cpp -o sources/tile/tile.o $(CXXFLAGS)
-
 sources/animation/animation.o: sources/animation/animation.cpp
 	$(CPP) -c sources/animation/animation.cpp -o sources/animation/animation.o $(CXXFLAGS)
+
+sources/tile/tile.o: sources/tile/tile.cpp
+	$(CPP) -c sources/tile/tile.cpp -o sources/tile/tile.o $(CXXFLAGS)
 
 sources/player/player.o: sources/player/player.cpp
 	$(CPP) -c sources/player/player.cpp -o sources/player/player.o $(CXXFLAGS)

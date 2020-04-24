@@ -1,19 +1,17 @@
 #include "sources/game/game.h"
 
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
 {	
 	switch(Message) 
 	{	
 		case WM_CREATE:
-		{ 
+		{ 	
 			game::Start();
 			break;	
 		}
 		
 		case WM_KEYDOWN:
 		{	
-			//set_neon_gradient((pos_t){1, 1});
 			game::KeyboardHandler(wParam); 
 			break;
 		}

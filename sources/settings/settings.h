@@ -31,20 +31,28 @@ namespace settings
 	extern const int SCREEN_HEIGHT;
 	
 	// PATHS
-	extern const string_t P_PLAYER;
-	extern const string_t P_WALL;
-	extern const string_t P_FLOOR;
+	extern cstring_t P_PLAYER;
+	extern cstring_t P_WALL;
+	extern cstring_t P_FLOOR;;
 }
 
 
 namespace settings
 {	
 	// COORDINATES 
-	const int X(position_t position);
-	const int Y(position_t position);
-	const position_t MAKE_POSITION(const int x, const int y);	
+	coord_t X(position_t position);
+	coord_t Y(position_t position);
+	
+	position_t MAKE_POSITION(short line, short col); 
+	coord_pair_t MAKE_COORD_PAIR(coord_t x, coord_t y);
+	
+	//TIME
+	template <class template_data>
+	time_t MAKE_TIME(template_data time)
+	{
+		return (time_t)time;	
+	}
 	
 	//TEXT
-	const string_t CSTRING(const char* pString);
-	const string_t* CPSTRING(const char** pString);
+	cstring_t CSTRING(const char* pString);
 }
